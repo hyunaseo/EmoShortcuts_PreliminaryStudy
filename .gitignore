@@ -9,8 +9,10 @@
 
 
 Assets/*
-!Assets/Audio/
-!Assets/Audio/**
+!Assets/Audis/
+!Assets/Audios/**
+!Assets/Animations/
+!Assets/Animations/**
 !Assets/Fonts/
 !Assets/Fonts/**
 !Assets/Scripts/
@@ -26,6 +28,9 @@ Assets/*
 !Assets/Editor/
 !Assets/Editor/**
 
+ES Formative Study_BurstDebugInformation_DoNotShip/*
+RuntimeActionBindings.json
+.vscode/*
 
 # User-specific files
 *.rsuser
