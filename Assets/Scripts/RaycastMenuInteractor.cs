@@ -23,7 +23,7 @@ public class RaycastMenuInteractor : MonoBehaviour
         }
 
         // Send in the finger tip and base positions to be calculated on the menu.
-        radialMenu.inputManager.SendRaycastInput(leftFingerTip.position, leftFingerBase.position);
+        // radialMenu.inputManager.SendRaycastInput(leftFingerTip.position, leftFingerBase.position);
         radialMenu.inputManager.SendRaycastInput(rightFingerTip.position, rightFingerBase.position);
     }
 }

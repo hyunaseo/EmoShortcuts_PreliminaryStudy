@@ -35,6 +35,21 @@ public class EmotionWheelManager_SubMenu : MonoBehaviour
     public Emotion[] Emotions;
     public Intensity[] Intensities;
 
+    [Header("Avatar")]
+    public GameObject avatar;
+    private Animator animator;
+    private PlayableGraph playableGraph;
+    private AnimationMixerPlayable mixer;
+    private AnimationPlayableOutput output;
+    
+    private AnimationClip lastClip;
+    private float transitionDuration = 1f;
+    private int currentIndex = -1;
+
+    [Header("Audios")]
+    public AudioSource emotionClickSound;
+    public AudioSource intensityClickSound;
+
     private readonly Dictionary<string, string[]> emotionColors = new Dictionary<string, string[]>()
     {
         { "Anger", new[] {"#F9ADB8", "#DE8792", "#AA6770"}},      
@@ -48,6 +63,7 @@ public class EmotionWheelManager_SubMenu : MonoBehaviour
 
     private string currentEmotion;
     private string currentIntensity;
+    private AnimationClip currentAnimation;
     
     private GameObject currentIntensityButton;
     private Transform currentIntensityButtonTransform;
@@ -66,6 +82,30 @@ public class EmotionWheelManager_SubMenu : MonoBehaviour
     {
         Debug.Log($"Current Emotion: {currentEmotion}, Intensity: {currentIntensity}");
         UpdateButtonSelection();
+
+        // find a child object from the avatar object that has animator 
+        if (animator == null)
+        {
+            animator = avatar.GetComponentInChildren<Animator>();
+
+            // Initialize PlayableGraph
+            playableGraph = PlayableGraph.Create("AnimationGraph");
+            playableGraph.SetTimeUpdateMode(DirectorUpdateMode.GameTime);
+
+            // Create Mixer
+            mixer = AnimationMixerPlayable.Create(playableGraph, 2); // 2 slots for blending
+            output = AnimationPlayableOutput.Create(playableGraph, "AnimationOutput", animator);
+            output.SetSourcePlayable(mixer);
+
+            // Play Default Animation
+            if (animator.runtimeAnimatorController != null)
+            {
+                AnimatorControllerPlayable controllerPlayable = AnimatorControllerPlayable.Create(playableGraph, animator.runtimeAnimatorController);
+                playableGraph.Connect(controllerPlayable, 0, mixer, 0);
+                mixer.SetInputWeight(0, 1);
+                playableGraph.Play();
+            }
+        }
     }
 
     // Update the button activation state. Called in Update(). 
@@ -99,14 +139,14 @@ public class EmotionWheelManager_SubMenu : MonoBehaviour
         currentIntensityButton = null;
         currentIntensityButtonTransform = null;
 
+        emotionClickSound.Play();
+
          // Clear the sub menu.
         subMenu.ClearMenu();
 
         // Loop through all the intensity options.
         for( int i = 0; i < Intensities.Length; i++ )
         {   
-            // Debug.Log($"Hyuna: {Intensities[i].name} is added.");
-            
             // Store the id of this option into the button info.
             Intensities[i].subButtonInfo.id = i;
             Intensities[i].subButtonInfo.name = Intensities[i].name;
@@ -129,6 +169,8 @@ public class EmotionWheelManager_SubMenu : MonoBehaviour
     public void UpdateIntensity(int id){
         currentIntensity = Intensities[id].name;
 
+        intensityClickSound.Play();
+
         UpdateAnimation(id);
 
         Intensities[id].subButtonInfo.SelectButton(true);
@@ -148,13 +190,70 @@ public class EmotionWheelManager_SubMenu : MonoBehaviour
         }
     }
 
-    public void UpdateAnimation(int id){
-        
+    private AnimationClip GetCurrentAnimation()
+    {
+        // find the element from Emotions whose name is currentEmotion
+        foreach (var emotion in Emotions)
+        {
+            if (emotion.name == currentEmotion)
+            {
+                // find the element from Intensities whose name is currentIntensity
+                foreach (var intensity in Intensities)
+                {
+                    if (intensity.name == currentIntensity)
+                    {
+                        if (intensity.name == "1") return emotion.lowAnimations[0];
+                        if (intensity.name == "2") return emotion.midAnimations[0];
+                        if (intensity.name == "3") return emotion.highAnimations[0];
+                    }
+                }
+            }
+        }
+        return null;
     }
 
+    public void UpdateAnimation(int id){
+        if(animator == null) return;
+        
+        AnimationClip newClip = GetCurrentAnimation();
+        if(newClip == null) return;
+
+        if (lastClip == newClip) return; // Prevent redundant calls
+
+        currentIndex = (currentIndex + 1) % 2; // Toggle between 0 and 1
+        int newIndex = (currentIndex == 0) ? 1 : 0; // Get the index of the new clip
+
+        // Create a new animation clip playable
+        var newClipPlayable = AnimationClipPlayable.Create(playableGraph, newClip);
+        playableGraph.Connect(newClipPlayable, 0, mixer, newIndex);
+        mixer.SetInputWeight(newIndex, 0); // Initially set new clip to 0 weight
+
+        // Start blending
+        StartCoroutine(BlendAnimations(newIndex, transitionDuration));
+
+        lastClip = newClip;
+    }
+
+    private IEnumerator BlendAnimations(int newIndex, float duration)
+    {
+        float time = 0f;
+        int oldIndex = (newIndex == 0) ? 1 : 0; // Get the other index
+
+        while (time < duration)
+        {
+            float weight = time / duration;
+            mixer.SetInputWeight(newIndex, weight);
+            mixer.SetInputWeight(oldIndex, 1 - weight);
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        mixer.SetInputWeight(newIndex, 1);
+        mixer.SetInputWeight(oldIndex, 0);
+        mixer.GetInput(oldIndex).Destroy(); // Clean up old animation
+    }
 
     // DEFAULT SETTING METHODS
-
     // Register the radial button with the input information. Called in Start().
     private void RegisterEmotionButtons()
     {
@@ -231,11 +330,16 @@ public class EmotionWheelManager_SubMenu : MonoBehaviour
             string textValue = buttonText.text;
             Color newColor= Color.gray;
 
-            if(textValue == "L") ColorUtility.TryParseHtmlString(lowColor, out newColor);
-            if(textValue == "M") ColorUtility.TryParseHtmlString(midColor, out newColor);
-            if(textValue == "H") ColorUtility.TryParseHtmlString(highColor, out newColor);
+            if(textValue == "1") ColorUtility.TryParseHtmlString(lowColor, out newColor);
+            if(textValue == "2") ColorUtility.TryParseHtmlString(midColor, out newColor);
+            if(textValue == "3") ColorUtility.TryParseHtmlString(highColor, out newColor);
             
             buttonImage.color = newColor;
         }
+    }
+
+    private void OnDestroy()
+    {
+        playableGraph.Destroy();
     }
 }
