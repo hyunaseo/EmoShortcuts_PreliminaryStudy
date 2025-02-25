@@ -7,6 +7,26 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+
+Assets/*
+!Assets/Audio/
+!Assets/Audio/**
+!Assets/Fonts/
+!Assets/Fonts/**
+!Assets/Scripts/
+!Assets/Scripts/**
+!Assets/Prefabs/
+!Assets/Prefabs/**
+!Assets/Materials/
+!Assets/Materials/**
+!Assets/Shaders/
+!Assets/Shaders/**
+!Assets/Scenes/
+!Assets/Scenes/**
+!Assets/Editor/
+!Assets/Editor/**
+
+
 # User-specific files
 *.rsuser
 *.suo
