@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class EmotionWheelManager_SubMenu : MonoBehaviour
 {   
+    public GameObject cube;
     [System.Serializable] 
     public class Emotion{
         public string name;
@@ -63,6 +64,8 @@ public class EmotionWheelManager_SubMenu : MonoBehaviour
 
     private string currentEmotion;
     private string currentIntensity;
+    private int currentEmotionID;
+    private int currentIntensityID;
     private AnimationClip currentAnimation;
     
     private GameObject currentIntensityButton;
@@ -162,7 +165,6 @@ public class EmotionWheelManager_SubMenu : MonoBehaviour
         }
         
         SetSubButtonColor();
-
         subMenu.Enable();
     }
 
@@ -170,8 +172,8 @@ public class EmotionWheelManager_SubMenu : MonoBehaviour
         currentIntensity = Intensities[id].name;
 
         intensityClickSound.Play();
-
-        UpdateAnimation(id);
+        AnimationClip newClip = GetCurrentAnimation();
+        UpdateAnimation(newClip);
 
         Intensities[id].subButtonInfo.SelectButton(true);
 
@@ -212,13 +214,12 @@ public class EmotionWheelManager_SubMenu : MonoBehaviour
         return null;
     }
 
-    public void UpdateAnimation(int id){
+    public void UpdateAnimation(AnimationClip newClip){
         if(animator == null) return;
-        
-        AnimationClip newClip = GetCurrentAnimation();
+
         if(newClip == null) return;
 
-        if (lastClip == newClip) return; // Prevent redundant calls
+        // if (lastClip == newClip) return; // Prevent redundant calls
 
         currentIndex = (currentIndex + 1) % 2; // Toggle between 0 and 1
         int newIndex = (currentIndex == 0) ? 1 : 0; // Get the index of the new clip
@@ -229,19 +230,19 @@ public class EmotionWheelManager_SubMenu : MonoBehaviour
         mixer.SetInputWeight(newIndex, 0); // Initially set new clip to 0 weight
 
         // Start blending
-        StartCoroutine(BlendAnimations(newIndex, transitionDuration));
+        StartCoroutine(BlendAnimations(newIndex, transitionDuration, newClip.length));
 
         lastClip = newClip;
     }
 
-    private IEnumerator BlendAnimations(int newIndex, float duration)
+    private IEnumerator BlendAnimations(int newIndex, float transitionDuration, float animationDuration)
     {
         float time = 0f;
         int oldIndex = (newIndex == 0) ? 1 : 0; // Get the other index
 
-        while (time < duration)
+        while (time < transitionDuration)
         {
-            float weight = time / duration;
+            float weight = time / transitionDuration;
             mixer.SetInputWeight(newIndex, weight);
             mixer.SetInputWeight(oldIndex, 1 - weight);
             time += Time.deltaTime;
@@ -251,6 +252,26 @@ public class EmotionWheelManager_SubMenu : MonoBehaviour
         mixer.SetInputWeight(newIndex, 1);
         mixer.SetInputWeight(oldIndex, 0);
         mixer.GetInput(oldIndex).Destroy(); // Clean up old animation
+
+        // Wait for the new animation to finish playing before logging
+        yield return new WaitForSeconds(animationDuration);
+
+        // // change the gameobject cube's material color to blue 
+        // cube.GetComponent<Renderer>().material.color = Color.blue;
+
+        // reset the radial menu button (no emotion, no intensity)
+        if(currentEmotion!="Neutral"){
+            Emotions[currentEmotionID].buttonInfo.SelectButton(false);
+            Intensities[currentIntensityID].subButtonInfo.SelectButton(false);
+            
+            // Reset the visual of radial menu
+            currentEmotion = null;
+            currentIntensity = null;
+            Destroy(currentIntensityButton);
+
+            // 여기서 계속 아바타가 좀 튕기면서 애니메이션이 끝나거나, 시작되는 현상이 있음. 
+            UpdateAnimation(Emotions[4].lowAnimations[0]);
+        }
     }
 
     // DEFAULT SETTING METHODS
