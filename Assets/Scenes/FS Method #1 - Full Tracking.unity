@@ -8355,6 +8355,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1558418583}
     m_Modifications:
+    - target: {fileID: 146815906965099110, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: minutes
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 146815906965099110, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: seconds
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 146815906965099110, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: timeRemaining
+      value: 45
+      objectReference: {fileID: 0}
     - target: {fileID: 276762525211534320, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
       propertyPath: _source
       value: 
@@ -8363,6 +8375,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1800145609}
+    - target: {fileID: 388701943099781876, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 497540102104707127, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -8415,34 +8431,238 @@ PrefabInstance:
       propertyPath: _source
       value: 
       objectReference: {fileID: 7079690333086246841}
+    - target: {fileID: 1396968647625691988, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1456279660215841649, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1702207818490852494, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1800145609}
+    - target: {fileID: 1848313411437059433, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: minutes
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1848313411437059433, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: seconds
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1848313411437059433, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: timeRemaining
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1848313411437059433, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: startAtRuntime
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1952814810548328175, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
       propertyPath: _source
       value: 
       objectReference: {fileID: 7079690333086246841}
+    - target: {fileID: 2216168634443931557, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.000030267987
+      objectReference: {fileID: 0}
+    - target: {fileID: 2216168634443931557, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2216168634443931557, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2216168634443931557, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2216168634443931557, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -894.0001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2216168634443931557, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -30.999722
+      objectReference: {fileID: 0}
+    - target: {fileID: 2319870623538905151, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2372920652575276686, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1500
+      objectReference: {fileID: 0}
     - target: {fileID: 2422746284165446613, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
       propertyPath: _source
       value: 
       objectReference: {fileID: 7079690333086246841}
+    - target: {fileID: 2614089597859659548, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_Text
+      value: "My dog started feeling sick yesterday. I\u2019m so worried.\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2629659450462123492, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2920490078243738112, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
       propertyPath: startButton
       value: 
       objectReference: {fileID: 8328067646623055616}
+    - target: {fileID: 3500910671367202437, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504518774580412525, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: minutes
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504518774580412525, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: seconds
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504518774580412525, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: timeRemaining
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 3586072431276409702, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.000030267987
+      objectReference: {fileID: 0}
+    - target: {fileID: 3586072431276409702, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3586072431276409702, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3586072431276409702, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3586072431276409702, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -894.0001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3586072431276409702, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -30.999722
+      objectReference: {fileID: 0}
+    - target: {fileID: 3983623972537738294, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: minutes
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3983623972537738294, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: seconds
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 3983623972537738294, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: timeRemaining
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 4129463767336716804, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_Text
+      value: I think someone tried to break into our house last night.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4380722474027612814, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.000030267987
+      objectReference: {fileID: 0}
+    - target: {fileID: 4380722474027612814, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4380722474027612814, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4380722474027612814, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4380722474027612814, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -894.0001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4380722474027612814, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -30.999722
+      objectReference: {fileID: 0}
     - target: {fileID: 4422551941436573059, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
       propertyPath: _source
       value: 
       objectReference: {fileID: 7079690333086246841}
+    - target: {fileID: 4704289950996365134, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4740769322434078097, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1500
+      objectReference: {fileID: 0}
     - target: {fileID: 4755307552256130106, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
       propertyPath: _source
       value: 
       objectReference: {fileID: 7079690333086246841}
+    - target: {fileID: 4922436745261725302, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5040883420010635106, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 5153312460671640113, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: minutes
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5153312460671640113, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: seconds
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 5153312460671640113, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: timeRemaining
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499013483413719483, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.000030267987
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499013483413719483, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499013483413719483, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499013483413719483, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499013483413719483, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -894.0001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499013483413719483, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -30.999722
+      objectReference: {fileID: 0}
     - target: {fileID: 5659446521446115546, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
       propertyPath: _source
       value: 
       objectReference: {fileID: 7079690333086246841}
+    - target: {fileID: 5715508299610135559, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_Text
+      value: I'm going to stop by the grocery store on my way home today.
+      objectReference: {fileID: 0}
+    - target: {fileID: 5752565717513890731, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1500
+      objectReference: {fileID: 0}
     - target: {fileID: 6017313852072056985, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
       propertyPath: m_Camera
       value: 
@@ -8459,10 +8679,40 @@ PrefabInstance:
       propertyPath: _source
       value: 
       objectReference: {fileID: 7079690333086246841}
+    - target: {fileID: 7454046855057925540, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7610857849084625314, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_Text
+      value: Sad
+      objectReference: {fileID: 0}
+    - target: {fileID: 7961332392779266589, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8544242990416913893, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8574855391644242687, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_Text
+      value: I'm so happy that our paper got accepted to UIST 2025.
+      objectReference: {fileID: 0}
     - target: {fileID: 8632308273926973305, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
       propertyPath: _source
       value: 
       objectReference: {fileID: 7079690333086246841}
+    - target: {fileID: 8708025302037687337, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_Text
+      value: 'How could you do this to me? You always mess things up.
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8990191234366356702, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -894
+      objectReference: {fileID: 0}
     - target: {fileID: 9088586023361168842, guid: 588c127a27a8c48cfa5f6c1c8bd6c0c9, type: 3}
       propertyPath: m_Camera
       value: 
