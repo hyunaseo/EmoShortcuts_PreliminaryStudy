@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EmotionCanvases : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class EmotionCanvases : MonoBehaviour
     private int currentCanvasIndex = 0;
     private Coroutine emotionCanvasCoroutine;
     private Timer timer;
+
+
+    [HideInInspector] 
+    public string currentEmotion;
 
     // Update is called once per frame
     void Update()
@@ -28,6 +33,7 @@ public class EmotionCanvases : MonoBehaviour
         while (currentCanvasIndex < emotionCanvases.Length)
         {
             emotionCanvases[currentCanvasIndex].SetActive(true);
+            currentEmotion = emotionCanvases[currentCanvasIndex].transform.Find("Emotion Type")?.Find("Text")?.GetComponent<Text>()?.text;
             timer = emotionCanvases[currentCanvasIndex].transform.Find("Timer").GetComponent<Timer>();
             beginningAudioSource.Play();
             timer.StartTimer();

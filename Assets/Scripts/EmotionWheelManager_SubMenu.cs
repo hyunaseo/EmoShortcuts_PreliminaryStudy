@@ -216,7 +216,6 @@ public class EmotionWheelManager_SubMenu : MonoBehaviour
 
     public void UpdateAnimation(AnimationClip newClip){
         if(animator == null) return;
-
         if(newClip == null) return;
 
         // if (lastClip == newClip) return; // Prevent redundant calls

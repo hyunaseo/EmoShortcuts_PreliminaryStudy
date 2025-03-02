@@ -8,8 +8,9 @@ public class BluetoothKeyboardChecker : MonoBehaviour
     public GameObject cube;
     private Material cubeMaterial;
     
-    public Color connectedColor = Color.blue;
-    public Color disconnectedColor = Color.red;
+    public Color blueColor = Color.blue;
+    public Color redColor = Color.red;
+    public Color greenColor = Color.green;
 
     private bool isKeyboardConnected = false;
 
@@ -31,14 +32,18 @@ public class BluetoothKeyboardChecker : MonoBehaviour
             isKeyboardConnected = true;
         }
 
-        // 일정 시간 동안 키 입력이 없으면 연결이 끊긴 것으로 간주
-        if (!isKeyboardConnected || !Input.anyKey)
+        // 특정 키 입력에 따라 색상 변경
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            cubeMaterial.color = disconnectedColor;
+            cubeMaterial.color = blueColor; 
         }
-        else
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            cubeMaterial.color = connectedColor;
+            cubeMaterial.color = redColor; 
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            cubeMaterial.color = greenColor; // Green
         }
     }
 }
