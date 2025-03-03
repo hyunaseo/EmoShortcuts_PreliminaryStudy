@@ -10,6 +10,7 @@ public class EmotionWheelManager_SubMenu : MonoBehaviour
 {   
     public GameObject cube;
     [System.Serializable] 
+    
     public class Emotion{
         public string name;
         [HideInInspector] public string colorCode;
@@ -269,7 +270,7 @@ public class EmotionWheelManager_SubMenu : MonoBehaviour
             Destroy(currentIntensityButton);
 
             // 여기서 계속 아바타가 좀 튕기면서 애니메이션이 끝나거나, 시작되는 현상이 있음. 
-            UpdateAnimation(Emotions[4].lowAnimations[0]);
+            // UpdateAnimation(Emotions[4].lowAnimations[0]);
         }
     }
 

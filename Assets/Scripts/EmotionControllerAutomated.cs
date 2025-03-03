@@ -6,7 +6,7 @@ using UnityEngine.Animations;
 using UnityEngine.UI;
 using UnityEngine.XR;
 using UnityEngine;
-public class EmotionManager_WizardOfOZ : MonoBehaviour
+public class EmotionControllerAutomated : MonoBehaviour
 {
     public EmotionCanvases emotionCanvases;
     private string currentEmotion;
