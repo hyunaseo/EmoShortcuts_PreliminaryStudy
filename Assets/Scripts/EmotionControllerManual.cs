@@ -37,13 +37,22 @@ public class EmotionControllerManual : MonoBehaviour
     private AnimationPlayableOutput output;
 
     // [Header("Test")]
-    // public GameObject cube;
+    public GameObject cube;
 
     private AnimationClip currentAnimation;
-    private GameObject currentButton;
     private AnimationClip lastClip;
     private float transitionDuration = 1f;
     private int currentIndex = 0;
+
+    private float animationStartTime = 0f;
+    private float currentAnimationDuration = 0f;
+    private bool isPlayingAnimation = false;
+
+    [Header("Neutral Animations")]
+    public AnimationClip[] neutralAnimations;
+
+    private GameObject currentButton = null;
+    private Emotion currentEmotion = null;
 
     // Start is called before the first frame update
     void Start()
@@ -150,6 +159,37 @@ public class EmotionControllerManual : MonoBehaviour
                 playableGraph.Play();
             }
         }
+
+        if (isPlayingAnimation)
+        {
+            // Check if the animation has finished playing
+            if (Time.time >= animationStartTime + currentAnimationDuration)
+            {
+                cube.GetComponent<Renderer>().material.color = Color.blue; // Set to blue when finished
+                isPlayingAnimation = false; // Stop checking
+                
+                // Reset button state
+                if (currentButton != null)
+                {
+                    Toggle toggle = currentButton.GetComponent<Toggle>();
+                    if (toggle != null)
+                    {
+                        toggle.isOn = false; // Untoggle
+                    }
+
+                    UpdateLableColor(currentButton, Color.black); // Reset label color
+                }
+
+                // Reset emotion type color
+                if (currentEmotion != null)
+                {
+                    UpdateEmotionTypeColor(currentEmotion, Color.black);
+                }
+                
+                AnimationClip tempClip = neutralAnimations[Random.Range(0, neutralAnimations.Length)];
+                UpdateAnimation(tempClip);
+            }
+        }
     }
 
     AnimationClip GetCurrentAnimation(GameObject button)
@@ -175,6 +215,7 @@ public class EmotionControllerManual : MonoBehaviour
     private void UpdateAnimation(AnimationClip newClip)
     {
         if(newClip == null || animator == null) return;
+        cube.GetComponent<Renderer>().material.color = Color.red;
 
         var newClipPlayable = AnimationClipPlayable.Create(playableGraph, newClip);
 
@@ -195,6 +236,15 @@ public class EmotionControllerManual : MonoBehaviour
         }
 
         lastClip = newClip;
+
+        // Track animation start time
+        animationStartTime = Time.time;
+        currentAnimationDuration = newClip.length;
+        isPlayingAnimation = true;
+
+        // Store the currently toggled button
+        currentButton = FindActiveButton();
+        currentEmotion = FindEmotionByButton(currentButton);
     }
 
     private IEnumerator BlendAnimations(int fromIndex, int toIndex, float duration)
@@ -213,6 +263,7 @@ public class EmotionControllerManual : MonoBehaviour
         mixer.SetInputWeight(toIndex, 1);
         currentIndex = toIndex;
     }
+
     void UpdateLableColor(GameObject button, Color color)
     {
         TextMeshProUGUI labelText = button.GetComponentInChildren<TextMeshProUGUI>(true); 
@@ -229,5 +280,28 @@ public class EmotionControllerManual : MonoBehaviour
         {
             emotionTypeText.color = color;
         }
+    }
+
+    GameObject FindActiveButton()
+    {
+        foreach (var emotion in Emotions)
+        {
+            if (emotion.ButtonLow.GetComponent<Toggle>().isOn) return emotion.ButtonLow;
+            if (emotion.ButtonMid.GetComponent<Toggle>().isOn) return emotion.ButtonMid;
+            if (emotion.ButtonHigh.GetComponent<Toggle>().isOn) return emotion.ButtonHigh;
+        }
+        return null;
+    }
+
+    Emotion FindEmotionByButton(GameObject button)
+    {
+        foreach (var emotion in Emotions)
+        {
+            if (emotion.ButtonLow == button || emotion.ButtonMid == button || emotion.ButtonHigh == button)
+            {
+                return emotion;
+            }
+        }
+        return null;
     }
 }
