@@ -37,7 +37,7 @@ public class EmotionCanvases : MonoBehaviour
             timer = emotionCanvases[currentCanvasIndex].transform.Find("Timer").GetComponent<Timer>();
             beginningAudioSource.Play();
             timer.StartTimer();
-            yield return new WaitForSeconds(57);
+            yield return new WaitForSeconds(27);
             
             for (int i = 3; i >0; i--)
             {
